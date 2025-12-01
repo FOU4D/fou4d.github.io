@@ -1,0 +1,34 @@
+title: Mohamed Fouad Fakhruldeen
+description: Contact profile for Mohamed Fouad Fakhruldeen
+
+# Author / Contact Details
+author:
+  first_name: "Mohamed"
+  middle_name: "Fouad"
+  last_name: "Fakhruldeen"
+  full_name: "Mohamed Fouad Fakhruldeen"
+  job_title: "Technical Programs Manager, Trainer & Consultant"
+  bio: "Helping businesses scale through innovative digital solutions and strategic planning."
+  avatar_url: "https://api.dicebear.com/7.x/initials/svg?seed=MF&backgroundColor=12263a&textColor=f4edea"
+  logo_url: "https://placehold.co/100x100/12263a/f4edea?text=LOGO" # Placeholder for your bottom logo
+  
+  # Contact Links
+  mobile: "+201063323096"
+  email: "fakhruldeen@gmail.com"
+  website: "https://fou4d.github.io"
+  
+  # Social Handles / URLs
+  whatsapp_number: "201063323096" # No + symbol for wa.me links usually
+  calendar_url: "https://calendar.app.google/SBbpzivzwDckRxbK6"
+  linkedin_url: "https://www.linkedin.com/in/fakhruldeen"
+  twitter_url: "https://x.com/_DE3N"
+  telegram_url: "https://t.me/FOU4d"
+
+# Theme Colors (Deep Space & Apricot Palette)
+theme:
+  colors:
+    deep_space_blue: "#12263a"
+    strong_cyan: "#06bcc1"
+    ash_grey: "#c5d8d1"
+    parchment: "#f4edea"
+    soft_apricot: "#f4d1ae"
