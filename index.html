@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ site.author.full_name }} | {{ site.title }}</title>
+    <title>Mohamed Fouad Fakhruldeen | Digital Business Card</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -11,12 +12,12 @@
             theme: {
                 extend: {
                     colors: {
-                        // Custom Palette from _config.yml
-                        'deep-space-blue': '{{ site.theme.colors.deep_space_blue }}',
-                        'strong-cyan': '{{ site.theme.colors.strong_cyan }}',
-                        'ash-grey': '{{ site.theme.colors.ash_grey }}',
-                        'parchment': '{{ site.theme.colors.parchment }}',
-                        'soft-apricot': '{{ site.theme.colors.soft_apricot }}',
+                        // Custom Palette
+                        'deep-space-blue': '#12263a',
+                        'strong-cyan': '#06bcc1',
+                        'ash-grey': '#c5d8d1',
+                        'parchment': '#f4edea',
+                        'soft-apricot': '#f4d1ae',
                     }
                 }
             }
@@ -31,14 +32,14 @@
         /* Base styles - Light Theme Background */
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: linear-gradient(135deg, {{ site.theme.colors.parchment }} 0%, {{ site.theme.colors.ash_grey }} 100%);
+            background: linear-gradient(135deg, #f4edea 0%, #c5d8d1 100%);
             min-height: 100vh;
             transition: background 0.5s ease;
         }
 
         /* Dark mode overrides - Dark Theme Background */
         html.dark body {
-            background: linear-gradient(135deg, #09131d 0%, {{ site.theme.colors.deep_space_blue }} 100%);
+            background: linear-gradient(135deg, #09131d 0%, #12263a 100%);
         }
         
         .glass-card {
@@ -52,8 +53,8 @@
 
         /* Dark mode glass card */
         html.dark .glass-card {
-            background: rgba(18, 38, 58, 0.75);
-            border-color: rgba(6, 188, 193, 0.2);
+            background: rgba(18, 38, 58, 0.75); /* deep-space-blue with opacity */
+            border-color: rgba(6, 188, 193, 0.2); /* strong-cyan border hint */
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
         }
 
@@ -85,6 +86,7 @@
     <main class="w-full max-w-md glass-card rounded-3xl overflow-hidden relative">
         
         <!-- Header / Banner Background -->
+        <!-- Gradient using Deep Space Blue to Strong Cyan -->
         <div class="h-32 bg-gradient-to-r from-deep-space-blue to-strong-cyan w-full relative transition-colors duration-300">
             <!-- Pattern Overlay -->
             <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23f4edea\' fill-opacity=\'1\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'3\'/%3E%3Ccircle cx=\'13\' cy=\'13\' r=\'3\'/%3E%3C/g%3E%3C/svg%3E');"></div>
@@ -109,18 +111,19 @@
             <!-- Profile Picture -->
             <div class="p-1.5 bg-white dark:bg-deep-space-blue rounded-full shadow-md mb-4 transition-colors duration-300">
                 <img 
-                    src="{{ site.author.avatar_url }}" 
-                    alt="{{ site.author.full_name }}" 
+                    src="https://api.dicebear.com/7.x/initials/svg?seed=MF&backgroundColor=12263a&textColor=f4edea" 
+                    alt="Mohamed Fouad Fakhruldeen" 
                     class="w-28 h-28 rounded-full object-cover bg-gray-100 dark:bg-gray-800"
                 >
             </div>
 
             <!-- Name & Title -->
-            <h1 class="text-2xl font-bold text-deep-space-blue dark:text-parchment leading-tight transition-colors">{{ site.author.full_name }}</h1>
-            <p class="text-strong-cyan dark:text-soft-apricot font-medium mt-1 transition-colors">{{ site.author.job_title }}</p>
-            <p class="text-slate-600 dark:text-ash-grey text-sm mt-2 max-w-xs transition-colors">{{ site.author.bio }}</p>
+            <h1 class="text-2xl font-bold text-deep-space-blue dark:text-parchment leading-tight transition-colors">Mohamed Fouad Fakhruldeen</h1>
+            <p class="text-strong-cyan dark:text-soft-apricot font-medium mt-1 transition-colors">Senior Technical Programs Manager, Trainer & Consultant</p>
+            <p class="text-slate-600 dark:text-ash-grey text-sm mt-2 max-w-xs transition-colors">Helping businesses scale through innovative digital solutions and strategic planning.</p>
 
-            <!-- Save Contact Button -->
+            <!-- Save Contact Button (Sticky Action) -->
+            <!-- Light: Deep Blue BG, Parchment Text | Dark: Cyan BG, Deep Blue Text -->
             <button onclick="downloadVCard()" class="w-full mt-6 bg-deep-space-blue dark:bg-strong-cyan text-parchment dark:text-deep-space-blue py-3.5 px-6 rounded-xl font-bold shadow-lg shadow-deep-space-blue/20 dark:shadow-strong-cyan/20 hover:opacity-90 transition-all flex items-center justify-center gap-2 action-btn">
                 <i class="fas fa-user-plus"></i>
                 Save to Contacts
@@ -129,7 +132,7 @@
             <!-- Quick Actions Grid -->
             <div class="grid grid-cols-2 gap-3 w-full mt-6">
                 <!-- Call -->
-                <a href="tel:{{ site.author.mobile }}" class="flex flex-col items-center gap-2 group p-2 rounded-xl hover:bg-white/50 dark:hover:bg-deep-space-blue/30 transition-colors border border-transparent dark:hover:border-strong-cyan/20">
+                <a href="tel:+201063323096" class="flex flex-col items-center gap-2 group p-2 rounded-xl hover:bg-white/50 dark:hover:bg-deep-space-blue/30 transition-colors border border-transparent dark:hover:border-strong-cyan/20">
                     <div class="w-12 h-12 rounded-full bg-parchment dark:bg-white/10 text-deep-space-blue dark:text-strong-cyan flex items-center justify-center text-lg border border-ash-grey dark:border-white/10 group-hover:bg-deep-space-blue dark:group-hover:bg-strong-cyan group-hover:text-parchment dark:group-hover:text-deep-space-blue transition-all">
                         <i class="fas fa-phone"></i>
                     </div>
@@ -137,7 +140,7 @@
                 </a>
                 
                 <!-- Email -->
-                <a href="mailto:{{ site.author.email }}" class="flex flex-col items-center gap-2 group p-2 rounded-xl hover:bg-white/50 dark:hover:bg-deep-space-blue/30 transition-colors border border-transparent dark:hover:border-strong-cyan/20">
+                <a href="mailto:fakhruldeen@gmail.com" class="flex flex-col items-center gap-2 group p-2 rounded-xl hover:bg-white/50 dark:hover:bg-deep-space-blue/30 transition-colors border border-transparent dark:hover:border-strong-cyan/20">
                     <div class="w-12 h-12 rounded-full bg-parchment dark:bg-white/10 text-deep-space-blue dark:text-soft-apricot flex items-center justify-center text-lg border border-ash-grey dark:border-white/10 group-hover:bg-deep-space-blue dark:group-hover:bg-soft-apricot group-hover:text-parchment dark:group-hover:text-deep-space-blue transition-all">
                         <i class="fas fa-envelope"></i>
                     </div>
@@ -149,7 +152,7 @@
             <div class="w-full flex flex-col gap-3 mt-8">
 
                 <!-- WhatsApp -->
-                <a href="https://wa.me/{{ site.author.whatsapp_number }}" target="_blank" class="flex items-center p-4 bg-white/60 dark:bg-deep-space-blue/40 border border-white dark:border-white/10 rounded-xl shadow-sm hover:shadow-md dark:hover:bg-deep-space-blue/60 transition-all group">
+                <a href="https://wa.me/201063323096" target="_blank" class="flex items-center p-4 bg-white/60 dark:bg-deep-space-blue/40 border border-white dark:border-white/10 rounded-xl shadow-sm hover:shadow-md dark:hover:bg-deep-space-blue/60 transition-all group">
                     <div class="w-10 h-10 rounded-lg bg-ash-grey/30 dark:bg-white/5 text-deep-space-blue dark:text-strong-cyan flex items-center justify-center text-lg mr-4 group-hover:scale-105 transition-transform">
                         <i class="fab fa-whatsapp"></i>
                     </div>
@@ -161,7 +164,7 @@
                 </a>
                 
                 <!-- Google Calendar Booking -->
-                <a href="{{ site.author.calendar_url }}" target="_blank" class="flex items-center p-4 bg-white/60 dark:bg-deep-space-blue/40 border border-white dark:border-white/10 rounded-xl shadow-sm hover:shadow-md dark:hover:bg-deep-space-blue/60 transition-all group">
+                <a href="https://calendar.app.google/SBbpzivzwDckRxbK6" target="_blank" class="flex items-center p-4 bg-white/60 dark:bg-deep-space-blue/40 border border-white dark:border-white/10 rounded-xl shadow-sm hover:shadow-md dark:hover:bg-deep-space-blue/60 transition-all group">
                     <div class="w-10 h-10 rounded-lg bg-ash-grey/30 dark:bg-white/5 text-deep-space-blue dark:text-soft-apricot flex items-center justify-center text-lg mr-4 group-hover:scale-105 transition-transform">
                         <i class="fas fa-calendar-check"></i>
                     </div>
@@ -173,7 +176,7 @@
                 </a>
 
                 <!-- LinkedIn -->
-                <a href="{{ site.author.linkedin_url }}" target="_blank" class="flex items-center p-4 bg-white/60 dark:bg-deep-space-blue/40 border border-white dark:border-white/10 rounded-xl shadow-sm hover:shadow-md dark:hover:bg-deep-space-blue/60 transition-all group">
+                <a href="https://www.linkedin.com/in/fakhruldeen" target="_blank" class="flex items-center p-4 bg-white/60 dark:bg-deep-space-blue/40 border border-white dark:border-white/10 rounded-xl shadow-sm hover:shadow-md dark:hover:bg-deep-space-blue/60 transition-all group">
                     <div class="w-10 h-10 rounded-lg bg-ash-grey/30 dark:bg-white/5 text-deep-space-blue dark:text-strong-cyan flex items-center justify-center text-lg mr-4 group-hover:scale-105 transition-transform">
                         <i class="fab fa-linkedin-in"></i>
                     </div>
@@ -185,7 +188,7 @@
                 </a>
 
                 <!-- Twitter / X -->
-                <a href="{{ site.author.twitter_url }}" target="_blank" class="flex items-center p-4 bg-white/60 dark:bg-deep-space-blue/40 border border-white dark:border-white/10 rounded-xl shadow-sm hover:shadow-md dark:hover:bg-deep-space-blue/60 transition-all group">
+                <a href="https://x.com/username" target="_blank" class="flex items-center p-4 bg-white/60 dark:bg-deep-space-blue/40 border border-white dark:border-white/10 rounded-xl shadow-sm hover:shadow-md dark:hover:bg-deep-space-blue/60 transition-all group">
                     <div class="w-10 h-10 rounded-lg bg-ash-grey/30 dark:bg-white/5 text-deep-space-blue dark:text-parchment flex items-center justify-center text-lg mr-4 group-hover:scale-105 transition-transform">
                         <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
                     </div>
@@ -197,7 +200,7 @@
                 </a>
 
                 <!-- Telegram -->
-                <a href="{{ site.author.telegram_url }}" target="_blank" class="flex items-center p-4 bg-white/60 dark:bg-deep-space-blue/40 border border-white dark:border-white/10 rounded-xl shadow-sm hover:shadow-md dark:hover:bg-deep-space-blue/60 transition-all group">
+                <a href="https://t.me/FOU4d" target="_blank" class="flex items-center p-4 bg-white/60 dark:bg-deep-space-blue/40 border border-white dark:border-white/10 rounded-xl shadow-sm hover:shadow-md dark:hover:bg-deep-space-blue/60 transition-all group">
                     <div class="w-10 h-10 rounded-lg bg-ash-grey/30 dark:bg-white/5 text-deep-space-blue dark:text-soft-apricot flex items-center justify-center text-lg mr-4 group-hover:scale-105 transition-transform">
                         <i class="fab fa-telegram-plane"></i>
                     </div>
@@ -210,18 +213,18 @@
 
             </div>
 
-            <!-- Footer with Logo Placeholder -->
-            <div class="mt-8 flex flex-col items-center">
+             <!-- Footer with Logo Placeholder -->
+             <div class="mt-8 flex flex-col items-center">
                 <!-- Circular Logo Placeholder -->
                 <div class="w-16 h-16 rounded-full bg-white dark:bg-white/10 p-1 shadow-sm mb-4 flex items-center justify-center overflow-hidden border border-ash-grey dark:border-white/10">
                     <img 
-                        src="{{ site.author.logo_url }}" 
+                        src="https://placehold.co/100x100/12263a/f4edea?text=LOGO" 
                         alt="Logo" 
                         class="w-full h-full rounded-full object-cover"
                     >
                 </div>
                 
-                <p class="text-xs text-ash-grey/80 dark:text-ash-grey/50">© 2025 {{ site.author.full_name }}</p>
+                <p class="text-xs text-ash-grey/80 dark:text-ash-grey/50">© 2025 Mohamed Fouad Fakhruldeen</p>
             </div>
             
         </div>
@@ -269,43 +272,54 @@
             }
         }
 
-        // --- VCard Download Logic ---
-        function downloadVCard() {
-            // Using Liquid variables injected into JS string (make sure quotes are safe)
-            const contact = {
-                fn: "{{ site.author.full_name }}",
-                ln: "{{ site.author.last_name }}",
-                n: "{{ site.author.first_name }}",
-                mn: "{{ site.author.middle_name }}",
-                title: "{{ site.author.job_title }}",
-                mobile: "{{ site.author.mobile }}",
-                email: "{{ site.author.email }}",
-                website: "{{ site.author.website }}",
-                linkedin: "{{ site.author.linkedin_url }}",
-                address: "{{ site.author.address }}"
-            };
+        // --- CONFIGURATION START ---
+        // Edit these details to customize the vCard download
+        const contactInfo = {
+            firstName: "Mohamed",
+            middleName: "Fouad",
+            lastName: "Fakhruldeen",
+            fullName: "Mohamed Fouad Fakhruldeen",
+            title: "Senior Technical Programs Manager, Trainer & Consultant",
+            organization: "Company Name",
+            mobile: "+201063323096", // International format preferred
+            email: "fakhruldeen@gmail.com",
+            website: "https://yourwebsite.com",
+            linkedin: "https://www.linkedin.com/in/fakhruldeen",
+            address: "City, Country"
+        };
+        // --- CONFIGURATION END ---
 
+        function downloadVCard() {
+            // Construct vCard 3.0 string
             const vcard = [
                 "BEGIN:VCARD",
                 "VERSION:3.0",
-                `FN:${contact.fn}`,
-                `N:${contact.ln};${contact.n};${contact.mn};;`,
-                `TITLE:${contact.title}`,
-                `TEL;TYPE=CELL,VOICE:${contact.mobile}`,
-                `EMAIL;TYPE=WORK,INTERNET:${contact.email}`,
-                `URL:${contact.website}`,
-                `URL;TYPE=LINKEDIN:${contact.linkedin}`,
-                `ADR;TYPE=WORK:;;${contact.address}`,
+                `FN:${contactInfo.fullName}`,
+                `N:${contactInfo.lastName};${contactInfo.firstName};${contactInfo.middleName};;`,
+                `TITLE:${contactInfo.title}`,
+                `ORG:${contactInfo.organization}`,
+                `TEL;TYPE=CELL,VOICE:${contactInfo.mobile}`,
+                `EMAIL;TYPE=WORK,INTERNET:${contactInfo.email}`,
+                `URL:${contactInfo.website}`,
+                `URL;TYPE=LINKEDIN:${contactInfo.linkedin}`,
+                `ADR;TYPE=WORK:;;${contactInfo.address}`,
                 "END:VCARD"
             ].join("\n");
 
+            // Create a blob for the file
             const blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
             const url = URL.createObjectURL(blob);
+            
+            // Create a temporary link to trigger download
             const link = document.createElement("a");
             link.href = url;
-            link.setAttribute("download", "contact.vcf");
+            link.setAttribute("download", "Mohamed_Fouad_Fakhruldeen.vcf");
             document.body.appendChild(link);
+            
+            // Trigger click
             link.click();
+            
+            // Cleanup
             document.body.removeChild(link);
             URL.revokeObjectURL(url);
         }
