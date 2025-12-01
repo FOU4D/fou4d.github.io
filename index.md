@@ -1,1 +1,318 @@
-null
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site.author.full_name }} | {{ site.title }}</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        // Custom Palette from _config.yml
+                        'deep-space-blue': '{{ site.theme.colors.deep_space_blue }}',
+                        'strong-cyan': '{{ site.theme.colors.strong_cyan }}',
+                        'ash-grey': '{{ site.theme.colors.ash_grey }}',
+                        'parchment': '{{ site.theme.colors.parchment }}',
+                        'soft-apricot': '{{ site.theme.colors.soft_apricot }}',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Base styles - Light Theme Background */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, {{ site.theme.colors.parchment }} 0%, {{ site.theme.colors.ash_grey }} 100%);
+            min-height: 100vh;
+            transition: background 0.5s ease;
+        }
+
+        /* Dark mode overrides - Dark Theme Background */
+        html.dark body {
+            background: linear-gradient(135deg, #09131d 0%, {{ site.theme.colors.deep_space_blue }} 100%);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 8px 32px 0 rgba(18, 38, 58, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        /* Dark mode glass card */
+        html.dark .glass-card {
+            background: rgba(18, 38, 58, 0.75);
+            border-color: rgba(6, 188, 193, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        .action-btn {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .action-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Custom scrollbar for better mobile feel */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+    <!-- Theme Init Script to prevent flash -->
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+</head>
+<body class="flex items-center justify-center p-4 sm:p-8 transition-colors duration-300">
+
+    <main class="w-full max-w-md glass-card rounded-3xl overflow-hidden relative">
+        
+        <!-- Header / Banner Background -->
+        <div class="h-32 bg-gradient-to-r from-deep-space-blue to-strong-cyan w-full relative transition-colors duration-300">
+            <!-- Pattern Overlay -->
+            <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23f4edea\' fill-opacity=\'1\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'3\'/%3E%3Ccircle cx=\'13\' cy=\'13\' r=\'3\'/%3E%3C/g%3E%3C/svg%3E');"></div>
+            
+            <div class="absolute top-4 right-4 z-20 flex gap-2">
+                 <!-- Theme Toggle Button -->
+                 <button onclick="toggleTheme()" class="w-10 h-10 rounded-full bg-deep-space-blue/30 hover:bg-deep-space-blue/50 text-parchment backdrop-blur-md flex items-center justify-center transition-all focus:outline-none active:scale-95 border border-white/20" aria-label="Toggle Theme">
+                    <i class="fas fa-moon dark:hidden"></i>
+                    <i class="fas fa-sun hidden dark:block text-soft-apricot"></i>
+                </button>
+
+                <!-- Share Button -->
+                <button onclick="shareProfile()" class="w-10 h-10 rounded-full bg-deep-space-blue/30 hover:bg-deep-space-blue/50 text-parchment backdrop-blur-md flex items-center justify-center transition-all focus:outline-none active:scale-95 border border-white/20" aria-label="Share">
+                    <i class="fas fa-share-alt"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Profile Section -->
+        <div class="px-6 pb-8 -mt-16 flex flex-col items-center text-center relative z-10">
+            
+            <!-- Profile Picture -->
+            <div class="p-1.5 bg-white dark:bg-deep-space-blue rounded-full shadow-md mb-4 transition-colors duration-300">
+                <img 
+                    src="{{ site.author.avatar_url }}" 
+                    alt="{{ site.author.full_name }}" 
+                    class="w-28 h-28 rounded-full object-cover bg-gray-100 dark:bg-gray-800"
+                >
+            </div>
+
+            <!-- Name & Title -->
+            <h1 class="text-2xl font-bold text-deep-space-blue dark:text-parchment leading-tight transition-colors">{{ site.author.full_name }}</h1>
+            <p class="text-strong-cyan dark:text-soft-apricot font-medium mt-1 transition-colors">{{ site.author.job_title }}</p>
+            <p class="text-slate-600 dark:text-ash-grey text-sm mt-2 max-w-xs transition-colors">{{ site.author.bio }}</p>
+
+            <!-- Save Contact Button -->
+            <button onclick="downloadVCard()" class="w-full mt-6 bg-deep-space-blue dark:bg-strong-cyan text-parchment dark:text-deep-space-blue py-3.5 px-6 rounded-xl font-bold shadow-lg shadow-deep-space-blue/20 dark:shadow-strong-cyan/20 hover:opacity-90 transition-all flex items-center justify-center gap-2 action-btn">
+                <i class="fas fa-user-plus"></i>
+                Save to Contacts
+            </button>
+
+            <!-- Quick Actions Grid -->
+            <div class="grid grid-cols-2 gap-3 w-full mt-6">
+                <!-- Call -->
+                <a href="tel:{{ site.author.mobile }}" class="flex flex-col items-center gap-2 group p-2 rounded-xl hover:bg-white/50 dark:hover:bg-deep-space-blue/30 transition-colors border border-transparent dark:hover:border-strong-cyan/20">
+                    <div class="w-12 h-12 rounded-full bg-parchment dark:bg-white/10 text-deep-space-blue dark:text-strong-cyan flex items-center justify-center text-lg border border-ash-grey dark:border-white/10 group-hover:bg-deep-space-blue dark:group-hover:bg-strong-cyan group-hover:text-parchment dark:group-hover:text-deep-space-blue transition-all">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <span class="text-xs font-medium text-gray-600 dark:text-ash-grey">Call</span>
+                </a>
+                
+                <!-- Email -->
+                <a href="mailto:{{ site.author.email }}" class="flex flex-col items-center gap-2 group p-2 rounded-xl hover:bg-white/50 dark:hover:bg-deep-space-blue/30 transition-colors border border-transparent dark:hover:border-strong-cyan/20">
+                    <div class="w-12 h-12 rounded-full bg-parchment dark:bg-white/10 text-deep-space-blue dark:text-soft-apricot flex items-center justify-center text-lg border border-ash-grey dark:border-white/10 group-hover:bg-deep-space-blue dark:group-hover:bg-soft-apricot group-hover:text-parchment dark:group-hover:text-deep-space-blue transition-all">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <span class="text-xs font-medium text-gray-600 dark:text-ash-grey">Email</span>
+                </a>
+            </div>
+
+            <!-- Detailed Links List -->
+            <div class="w-full flex flex-col gap-3 mt-8">
+
+                <!-- WhatsApp -->
+                <a href="https://wa.me/{{ site.author.whatsapp_number }}" target="_blank" class="flex items-center p-4 bg-white/60 dark:bg-deep-space-blue/40 border border-white dark:border-white/10 rounded-xl shadow-sm hover:shadow-md dark:hover:bg-deep-space-blue/60 transition-all group">
+                    <div class="w-10 h-10 rounded-lg bg-ash-grey/30 dark:bg-white/5 text-deep-space-blue dark:text-strong-cyan flex items-center justify-center text-lg mr-4 group-hover:scale-105 transition-transform">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="text-left flex-1">
+                        <h3 class="font-semibold text-deep-space-blue dark:text-parchment group-hover:text-strong-cyan dark:group-hover:text-strong-cyan transition-colors">WhatsApp</h3>
+                        <p class="text-xs text-gray-500 dark:text-ash-grey">Chat on WhatsApp</p>
+                    </div>
+                    <i class="fas fa-chevron-right text-ash-grey dark:text-white/20"></i>
+                </a>
+                
+                <!-- Google Calendar Booking -->
+                <a href="{{ site.author.calendar_url }}" target="_blank" class="flex items-center p-4 bg-white/60 dark:bg-deep-space-blue/40 border border-white dark:border-white/10 rounded-xl shadow-sm hover:shadow-md dark:hover:bg-deep-space-blue/60 transition-all group">
+                    <div class="w-10 h-10 rounded-lg bg-ash-grey/30 dark:bg-white/5 text-deep-space-blue dark:text-soft-apricot flex items-center justify-center text-lg mr-4 group-hover:scale-105 transition-transform">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="text-left flex-1">
+                        <h3 class="font-semibold text-deep-space-blue dark:text-parchment group-hover:text-strong-cyan dark:group-hover:text-soft-apricot transition-colors">Book a Meeting</h3>
+                        <p class="text-xs text-gray-500 dark:text-ash-grey">Schedule a time on my calendar</p>
+                    </div>
+                    <i class="fas fa-chevron-right text-ash-grey dark:text-white/20"></i>
+                </a>
+
+                <!-- LinkedIn -->
+                <a href="{{ site.author.linkedin_url }}" target="_blank" class="flex items-center p-4 bg-white/60 dark:bg-deep-space-blue/40 border border-white dark:border-white/10 rounded-xl shadow-sm hover:shadow-md dark:hover:bg-deep-space-blue/60 transition-all group">
+                    <div class="w-10 h-10 rounded-lg bg-ash-grey/30 dark:bg-white/5 text-deep-space-blue dark:text-strong-cyan flex items-center justify-center text-lg mr-4 group-hover:scale-105 transition-transform">
+                        <i class="fab fa-linkedin-in"></i>
+                    </div>
+                    <div class="text-left flex-1">
+                        <h3 class="font-semibold text-deep-space-blue dark:text-parchment group-hover:text-strong-cyan dark:group-hover:text-strong-cyan transition-colors">LinkedIn</h3>
+                        <p class="text-xs text-gray-500 dark:text-ash-grey">Connect professionally</p>
+                    </div>
+                    <i class="fas fa-chevron-right text-ash-grey dark:text-white/20"></i>
+                </a>
+
+                <!-- Twitter / X -->
+                <a href="{{ site.author.twitter_url }}" target="_blank" class="flex items-center p-4 bg-white/60 dark:bg-deep-space-blue/40 border border-white dark:border-white/10 rounded-xl shadow-sm hover:shadow-md dark:hover:bg-deep-space-blue/60 transition-all group">
+                    <div class="w-10 h-10 rounded-lg bg-ash-grey/30 dark:bg-white/5 text-deep-space-blue dark:text-parchment flex items-center justify-center text-lg mr-4 group-hover:scale-105 transition-transform">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                    </div>
+                    <div class="text-left flex-1">
+                        <h3 class="font-semibold text-deep-space-blue dark:text-parchment group-hover:text-strong-cyan dark:group-hover:text-strong-cyan transition-colors">X (Twitter)</h3>
+                        <p class="text-xs text-gray-500 dark:text-ash-grey">Follow my updates</p>
+                    </div>
+                    <i class="fas fa-chevron-right text-ash-grey dark:text-white/20"></i>
+                </a>
+
+                <!-- Telegram -->
+                <a href="{{ site.author.telegram_url }}" target="_blank" class="flex items-center p-4 bg-white/60 dark:bg-deep-space-blue/40 border border-white dark:border-white/10 rounded-xl shadow-sm hover:shadow-md dark:hover:bg-deep-space-blue/60 transition-all group">
+                    <div class="w-10 h-10 rounded-lg bg-ash-grey/30 dark:bg-white/5 text-deep-space-blue dark:text-soft-apricot flex items-center justify-center text-lg mr-4 group-hover:scale-105 transition-transform">
+                        <i class="fab fa-telegram-plane"></i>
+                    </div>
+                    <div class="text-left flex-1">
+                        <h3 class="font-semibold text-deep-space-blue dark:text-parchment group-hover:text-strong-cyan dark:group-hover:text-soft-apricot transition-colors">Telegram</h3>
+                        <p class="text-xs text-gray-500 dark:text-ash-grey">Direct message me</p>
+                    </div>
+                    <i class="fas fa-chevron-right text-ash-grey dark:text-white/20"></i>
+                </a>
+
+            </div>
+
+            <!-- Footer with Logo Placeholder -->
+            <div class="mt-8 flex flex-col items-center">
+                <!-- Circular Logo Placeholder -->
+                <div class="w-16 h-16 rounded-full bg-white dark:bg-white/10 p-1 shadow-sm mb-4 flex items-center justify-center overflow-hidden border border-ash-grey dark:border-white/10">
+                    <img 
+                        src="{{ site.author.logo_url }}" 
+                        alt="Logo" 
+                        class="w-full h-full rounded-full object-cover"
+                    >
+                </div>
+                
+                <p class="text-xs text-ash-grey/80 dark:text-ash-grey/50">© 2025 {{ site.author.full_name }}</p>
+            </div>
+            
+        </div>
+    </main>
+
+    <script>
+        // --- THEME TOGGLE FUNCTION ---
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        }
+
+        // --- SHARE FUNCTION ---
+        async function shareProfile() {
+            const shareData = {
+                title: document.title,
+                text: 'Check out my digital business card!',
+                url: window.location.href
+            };
+
+            if (navigator.share) {
+                try {
+                    await navigator.share(shareData);
+                } catch (err) {
+                    console.log('Share canceled or failed', err);
+                }
+            } else {
+                try {
+                    await navigator.clipboard.writeText(window.location.href);
+                    const btn = document.querySelector('button[aria-label="Share"]');
+                    const originalHTML = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-check"></i>';
+                    setTimeout(() => {
+                        btn.innerHTML = originalHTML;
+                    }, 2000);
+                    alert("Link copied to clipboard!");
+                } catch (err) {
+                    console.error('Failed to copy: ', err);
+                }
+            }
+        }
+
+        // --- VCard Download Logic ---
+        function downloadVCard() {
+            // Using Liquid variables injected into JS string (make sure quotes are safe)
+            const contact = {
+                fn: "{{ site.author.full_name }}",
+                ln: "{{ site.author.last_name }}",
+                n: "{{ site.author.first_name }}",
+                mn: "{{ site.author.middle_name }}",
+                title: "{{ site.author.job_title }}",
+                mobile: "{{ site.author.mobile }}",
+                email: "{{ site.author.email }}",
+                website: "{{ site.author.website }}",
+                linkedin: "{{ site.author.linkedin_url }}",
+                address: "{{ site.author.address }}"
+            };
+
+            const vcard = [
+                "BEGIN:VCARD",
+                "VERSION:3.0",
+                `FN:${contact.fn}`,
+                `N:${contact.ln};${contact.n};${contact.mn};;`,
+                `TITLE:${contact.title}`,
+                `TEL;TYPE=CELL,VOICE:${contact.mobile}`,
+                `EMAIL;TYPE=WORK,INTERNET:${contact.email}`,
+                `URL:${contact.website}`,
+                `URL;TYPE=LINKEDIN:${contact.linkedin}`,
+                `ADR;TYPE=WORK:;;${contact.address}`,
+                "END:VCARD"
+            ].join("\n");
+
+            const blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.setAttribute("download", "contact.vcf");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
