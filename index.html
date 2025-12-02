@@ -143,10 +143,9 @@
     <main class="w-full max-w-md glass-card rounded-3xl overflow-hidden relative">
         
         <!-- Header / Banner Background -->
-        <!-- Gradient using Deep Space Blue to Strong Cyan -->
-        <div class="h-32 bg-gradient-to-r from-deep-space-blue to-strong-cyan w-full relative transition-colors duration-300">
-            <!-- Pattern Overlay -->
-            <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23f4edea\' fill-opacity=\'1\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'3\'/%3E%3Ccircle cx=\'13\' cy=\'13\' r=\'3\'/%3E%3C/g%3E%3C/svg%3E');"></div>
+        <div class="h-32 w-full relative transition-colors duration-300 bg-cover bg-center" style="background-image: url('./img/header-bg.jpg');">
+            <!-- Dark Overlay for button visibility -->
+            <div class="absolute inset-0 bg-black/20"></div>
             
             <!-- Language Switcher (Top Left) -->
             <!-- dir="ltr" ensures this stays on the left physically even in RTL mode -->
@@ -320,7 +319,8 @@
                 copyright: "© 2025 Mohamed Fouad Fakhruldeen",
                 langBtn: "ع",
                 shareTitle: "Check out Mohamed Fakhruldeen contact card",
-                shareSuccess: "Link copied to clipboard!"
+                shareSuccess: "Link copied to clipboard!",
+                vcardFileName: "Mohamed_F_Fakhruldeen.vcf"
             },
             ar: {
                 fullName: "محمد فؤاد فخرالدين",
@@ -341,7 +341,8 @@
                 copyright: "© 2025 محمد فؤاد فخرالدين",
                 langBtn: "EN",
                 shareTitle: "تفضل بزيارة بطاقة التواصل الخاصة بمحمد فخرالدين",
-                shareSuccess: "تم نسخ الرابط!"
+                shareSuccess: "تم نسخ الرابط!",
+                vcardFileName: "محمد_فؤاد_فخرالدين.vcf"
             }
         };
 
@@ -463,8 +464,8 @@
             // Create a temporary link to trigger download
             const link = document.createElement("a");
             link.href = url;
-            // File name changes slightly based on language context if desired, or keep standard
-            link.setAttribute("download", "Mohamed_Fouad_Fakhruldeen.vcf");
+            // File name changes dynamically based on language context
+            link.setAttribute("download", data.vcardFileName);
             document.body.appendChild(link);
             
             // Trigger click
