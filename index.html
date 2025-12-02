@@ -299,7 +299,6 @@
             lastName: "Fakhruldeen",
             title: "Dr."
             fullName: "Mohamed Fouad Fakhruldeen",
-            arabicFullName: "محمد فؤاد فخرالدين",
             title: "Senior Technical Programs Manager, Trainer & Consultant",
             organization: "محمد فؤاد فخرالدين",
             mobile: "+201063323096", // International format preferred
@@ -314,15 +313,12 @@
                 "BEGIN:VCARD",
                 "VERSION:3.0",
                 `FN;CHARSET=UTF-8:${contactInfo.fullName}`,
-                `FN;CHARSET=UTF-8:${contactInfo.fullName}`,
-                `N;CHARSET=UTF-8:${contactInfo.lastName};${contactInfo.firstName};;;`,
+                `N;CHARSET=UTF-8:${contactInfo.lastName};${contactInfo.firstName};${contactInfo.middleName};${contactInfo.Prefix};`,
                 `TITLE;CHARSET=UTF-8:${contactInfo.title}`,
                 `ORG;CHARSET=UTF-8:${contactInfo.organization}`,
                 `TEL;TYPE=CELL,VOICE:${contactInfo.mobile}`,
                 `EMAIL;TYPE=WORK,INTERNET:${contactInfo.email}`,
                 `URL;CHARSET=UTF-8:${contactInfo.website}`,
-                // Adding Arabic name to note as a fallback for visibility
-                `NOTE;CHARSET=UTF-8:${contactInfo.arabicFullName}`,
                 "END:VCARD"
             ].join("\n");
 
