@@ -313,10 +313,11 @@
                 "BEGIN:VCARD",
                 "VERSION:3.0",
                 `FN;CHARSET=UTF-8:${contactInfo.fullName}`,
-                `N;CHARSET=UTF-8:${contactInfo.lastName};${contactInfo.firstName};${contactInfo.middleName};;`,
+                `FN;LANGUAGE=en;CHARSET=UTF-8:${contactInfo.fullName}`,
+                `N;CHARSET=UTF-8:${contactInfo.lastName};${contactInfo.firstName};;;`,
                 // Secondary Arabic Name (Visible on compatible devices)
                 `FN;LANGUAGE=ar:${contactInfo.arabicFullName}`,
-                `N;CHARSET=UTF-8:;;;;${contactInfo.arabicFullName}`,
+                `N;LANGUAGE=ar;CHARSET=UTF-8:;;;;${contactInfo.arabicFullName}`,
                 `TITLE;CHARSET=UTF-8:${contactInfo.title}`,
                 `ORG;CHARSET=UTF-8:${contactInfo.organization}`,
                 `TEL;TYPE=CELL,VOICE:${contactInfo.mobile}`,
