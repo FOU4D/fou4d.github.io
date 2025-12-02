@@ -297,7 +297,7 @@
             firstName: "Mohamed",
             middleName: "Fouad",
             lastName: "Fakhruldeen",
-            title: "Dr."
+            prefix: "Dr.",
             fullName: "Mohamed Fouad Fakhruldeen",
             title: "Senior Technical Programs Manager, Trainer & Consultant",
             organization: "محمد فؤاد فخرالدين",
@@ -313,7 +313,7 @@
                 "BEGIN:VCARD",
                 "VERSION:3.0",
                 `FN;CHARSET=UTF-8:${contactInfo.fullName}`,
-                `N;CHARSET=UTF-8:${contactInfo.lastName};${contactInfo.firstName};${contactInfo.middleName};${contactInfo.Prefix};`,
+                `N;CHARSET=UTF-8:${contactInfo.lastName};${contactInfo.firstName};${contactInfo.middleName};${contactInfo.prefix};`,
                 `TITLE;CHARSET=UTF-8:${contactInfo.title}`,
                 `ORG;CHARSET=UTF-8:${contactInfo.organization}`,
                 `TEL;TYPE=CELL,VOICE:${contactInfo.mobile}`,
